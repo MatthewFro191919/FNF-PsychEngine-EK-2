@@ -423,7 +423,8 @@ class Note extends FlxSprite
 	
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
-        else
+                       else
+		       {
 			
 			default:
 				frames = Paths.getSparrowAtlas(notePathLol, 'shared');
@@ -475,7 +476,7 @@ class Note extends FlxSprite
 				updateHitbox();
 				antialiasing = noteStyle != '3D';
 			
-			case 'shape' | '':
+			case 'shape':
 				frames = Paths.getSparrowAtlas(notePathLol, 'shared');
 
 				animation.addByPrefix('greenScroll', 'green0');
@@ -597,6 +598,7 @@ class Note extends FlxSprite
 				antialiasing = true;
 				
 				// noteOffset = 20;
+		       }
 	}
 
 	function loadPixelNoteAnims() {

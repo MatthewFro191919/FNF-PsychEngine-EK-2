@@ -1087,7 +1087,7 @@ class PlayState extends MusicBeatState
 		
 		if (noGFSongs.contains(SONG.song.toLowerCase()) || !['none', 'bf', 'bf-pixel'].contains(formoverride))
 		{
-			gfVersion = 'gf-none';
+			gf.visible = false;
 		}
 
 		if(gfVersion == null || gfVersion.length < 1)

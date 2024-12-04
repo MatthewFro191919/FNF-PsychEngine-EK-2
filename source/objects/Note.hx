@@ -376,7 +376,8 @@ class Note extends FlxSprite
 
 	function loadNoteAnims() {
         if (((CharactersWith3D.contains(PlayState.dadChar) && !musthit) || (CharactersWith3D.contains(PlayState.bfChar) && musthit)) || ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1)) && ((this.strumTime / 50) % 20 > 10)))
-				frames = Paths.getSparrowAtlas('notes/NOTE_assets_3D', 'shared');
+                       {
+	                	frames = Paths.getSparrowAtlas('notes/NOTE_assets_3D', 'shared');
 
 				animation.addByPrefix('greenScroll', 'green0');
 				animation.addByPrefix('redScroll', 'red0');
@@ -423,6 +424,7 @@ class Note extends FlxSprite
 	
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
+                       }
                        else
 		       {
 			

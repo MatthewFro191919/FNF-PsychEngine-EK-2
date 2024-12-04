@@ -447,6 +447,52 @@ class PlayState extends MusicBeatState
 		if(SONG.stage == null || SONG.stage.length < 1) {
 			switch (songName)
 			{
+				case 'house' | 'insanity' | 'supernovae' | 'warmup':
+					stageCheck = 'house';
+				case 'polygonized':
+					stageCheck = 'red-void';
+				case 'bonus-song':
+					stageCheck = 'inside-house';
+				case 'blocked' | 'corn-theft' | 'maze':
+					stageCheck = 'farm';
+				case 'indignancy':
+					stageCheck = 'farm-night';
+				case 'splitathon' | 'mealie':
+					stageCheck = 'farm-night';
+				case 'shredder' | 'greetings':
+					stageCheck = 'festival';
+				case 'interdimensional':
+					stageCheck = 'interdimension-void';
+				case 'rano':
+					stageCheck = 'backyard';
+				case 'cheating':
+					stageCheck = 'green-void';
+				case 'unfairness':
+					stageCheck = 'glitchy-void';
+				case 'exploitation':
+					stageCheck = 'desktop';
+				case 'kabunga':
+					stageCheck = 'exbungo-land';
+				case 'glitch' | 'memory':
+					stageCheck = 'house-night';
+				case 'secret':
+					stageCheck = 'house-sunset';
+				case 'vs-dave-rap' | 'vs-dave-rap-two':
+					stageCheck = 'rapBattle';
+				case 'recursed':
+					stageCheck = 'freeplay';
+				case 'roofs':
+					stageCheck = 'roof';
+				case 'bot-trot':
+					stageCheck = 'bedroom';
+				case 'escape-from-california':
+					stageCheck = 'desert';
+				case 'master':
+					stageCheck = 'master';
+				case 'overdrive':
+					stageCheck = 'overdrive';
+				case 'five-nights':
+					stageCheck = 'office';
 				case 'spookeez' | 'south' | 'monster':
 					curStage = 'spooky';
 				case 'pico' | 'blammed' | 'philly' | 'philly-nice':
@@ -518,6 +564,38 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
+			case 'office':
+				add(gfGroup);
+				add(bfGroup);
+
+				var floor:BGSprite = new BGSprite('frontFloor', -689, 525, Paths.image('backgrounds/office/floor'), null, 1, 1);
+				backgroundSprites.add(floor);
+
+				door = new BGSprite('door', 68, -152, 'backgrounds/office/door', [
+					new Animation('idle', 'doorLOL instance 1', 0, false, [false, false], [11]),
+					new Animation('doorShut', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(22, 11)),
+					new Animation('doorOpen', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(11, 0))
+				], 1, 1, true, true);
+				door.animation.play('idle');
+				backgroundSprites.add(door);
+				add(door);
+
+				var frontWall:BGSprite = new BGSprite('frontWall', -716, -381, Paths.image('backgrounds/office/frontWall'), null, 1, 1);
+				backgroundSprites.add(frontWall);
+				add(frontWall);
+
+				doorButton = new BGSprite('doorButton', 521, 61, Paths.image('fiveNights/btn_doorOpen'), null, 1, 1);
+				backgroundSprites.add(doorButton);
+				add(doorButton);
+				
+				var backFloor:BGSprite = new BGSprite('backFloor', -500, -310, Paths.image('backgrounds/office/backFloor'), null, 1, 1);
+				sprites.add(backFloor);
+
+				add(backFloor);
+				add(frontWall);
+				add(doorButton);
+				add(floor);
+
 			case 'stage': //Week 1
 				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 				add(bg);

@@ -82,6 +82,8 @@ class Note extends FlxSprite
 	public var isSustainNote:Bool = false;
 	public var noteType(default, set):String = null;
 
+    private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo', 'expunged', 'dave-festival-3d', 'dave-3d-recursed', 'bf-3d', 'nofriend'];
+
 	public var eventName:String = '';
 	public var eventLength:Int = 0;
 	public var eventVal1:String = '';
@@ -373,24 +375,232 @@ class Note extends FlxSprite
 	}
 
 	function loadNoteAnims() {
-		for (i in 0...gfxLetter.length)
-			{
-				animation.addByPrefix(gfxLetter[i], gfxLetter[i] + '0');
+        if (((CharactersWith3D.contains(PlayState.dadChar) && !musthit) || (CharactersWith3D.contains(PlayState.bfChar) && musthit)) || ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1)) && ((this.strumTime / 50) % 20 > 10)))
+                       {
+	                	frames = Paths.getSparrowAtlas('notes/NOTE_assets_3D', 'shared');
+
+				animation.addByPrefix('greenScroll', 'green0');
+				animation.addByPrefix('redScroll', 'red0');
+				animation.addByPrefix('blueScroll', 'blue0');
+				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('whiteScroll', 'white0');
+				animation.addByPrefix('yellowScroll', 'yellow0');
+				animation.addByPrefix('violetScroll', 'violet0');
+				animation.addByPrefix('blackScroll', 'black0');
+				animation.addByPrefix('darkScroll', 'dark0');
+				animation.addByPrefix('pinkScroll', 'pink0');
+				animation.addByPrefix('turqScroll', 'turq0');
+				animation.addByPrefix('emeraldScroll', 'emerald0');
+				animation.addByPrefix('lightredScroll', 'lightred0');
+
+
+				animation.addByPrefix('purpleholdend', 'pruple end hold');
+				animation.addByPrefix('greenholdend', 'green hold end');
+				animation.addByPrefix('redholdend', 'red hold end');
+				animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('whiteholdend', 'white hold end');
+				animation.addByPrefix('yellowholdend', 'yellow hold end');
+				animation.addByPrefix('violetholdend', 'violet hold end');
+				animation.addByPrefix('blackholdend', 'black hold end');
+				animation.addByPrefix('darkholdend', 'dark hold end');
+				animation.addByPrefix('pinkholdend', 'pink hold end');
+				animation.addByPrefix('turqholdend', 'turq hold end');
+				animation.addByPrefix('emeraldholdend', 'emerald hold end');
+				animation.addByPrefix('lightredholdend', 'lightred hold end');
+
+				animation.addByPrefix('purplehold', 'purple hold piece');
+				animation.addByPrefix('greenhold', 'green hold piece');
+				animation.addByPrefix('redhold', 'red hold piece');
+				animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('whitehold', 'white hold piece');
+				animation.addByPrefix('yellowhold', 'yellow hold piece');
+				animation.addByPrefix('violethold', 'violet hold piece');
+				animation.addByPrefix('blackhold', 'black hold piece');
+				animation.addByPrefix('darkhold', 'dark hold piece');
+				animation.addByPrefix('pinkhold', 'pink hold piece');
+				animation.addByPrefix('turqhold', 'turq hold piece');
+				animation.addByPrefix('emeraldhold', 'emerald hold piece');
+				animation.addByPrefix('lightredhold', 'lightred hold piece');
 	
-				if (isSustainNote)
+				setGraphicSize(Std.int(width * noteSize));
+				updateHitbox();
+                       }
+                       else
+		       {
+			
+			default:
+				frames = Paths.getSparrowAtlas(notePathLol, 'shared');
+
+				animation.addByPrefix('greenScroll', 'green0');
+				animation.addByPrefix('redScroll', 'red0');
+				animation.addByPrefix('blueScroll', 'blue0');
+				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('whiteScroll', 'white0');
+				animation.addByPrefix('yellowScroll', 'yellow0');
+				animation.addByPrefix('violetScroll', 'violet0');
+				animation.addByPrefix('blackScroll', 'black0');
+				animation.addByPrefix('darkScroll', 'dark0');
+				animation.addByPrefix('pinkScroll', 'pink0');
+				animation.addByPrefix('turqScroll', 'turq0');
+				animation.addByPrefix('emeraldScroll', 'emerald0');
+				animation.addByPrefix('lightredScroll', 'lightred0');
+
+
+				animation.addByPrefix('purpleholdend', 'pruple end hold');
+				animation.addByPrefix('greenholdend', 'green hold end');
+				animation.addByPrefix('redholdend', 'red hold end');
+				animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('whiteholdend', 'white hold end');
+				animation.addByPrefix('yellowholdend', 'yellow hold end');
+				animation.addByPrefix('violetholdend', 'violet hold end');
+				animation.addByPrefix('blackholdend', 'black hold end');
+				animation.addByPrefix('darkholdend', 'dark hold end');
+				animation.addByPrefix('pinkholdend', 'pink hold end');
+				animation.addByPrefix('turqholdend', 'turq hold end');
+				animation.addByPrefix('emeraldholdend', 'emerald hold end');
+				animation.addByPrefix('lightredholdend', 'lightred hold end');
+
+				animation.addByPrefix('purplehold', 'purple hold piece');
+				animation.addByPrefix('greenhold', 'green hold piece');
+				animation.addByPrefix('redhold', 'red hold piece');
+				animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('whitehold', 'white hold piece');
+				animation.addByPrefix('yellowhold', 'yellow hold piece');
+				animation.addByPrefix('violethold', 'violet hold piece');
+				animation.addByPrefix('blackhold', 'black hold piece');
+				animation.addByPrefix('darkhold', 'dark hold piece');
+				animation.addByPrefix('pinkhold', 'pink hold piece');
+				animation.addByPrefix('turqhold', 'turq hold piece');
+				animation.addByPrefix('emeraldhold', 'emerald hold piece');
+				animation.addByPrefix('lightredhold', 'lightred hold piece');
+	
+				setGraphicSize(Std.int(width * noteSize));
+				updateHitbox();
+				antialiasing = noteStyle != '3D';
+			
+			case 'shape':
+				frames = Paths.getSparrowAtlas(notePathLol, 'shared');
+
+				animation.addByPrefix('greenScroll', 'green0');
+				animation.addByPrefix('redScroll', 'red0');
+				animation.addByPrefix('blueScroll', 'blue0');
+				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('yellowScroll', 'yellow0');
+				animation.addByPrefix('darkScroll', 'dark0');
+
+
+				animation.addByPrefix('purpleholdend', 'purple hold piece');
+				animation.addByPrefix('greenholdend', 'green hold piece');
+				animation.addByPrefix('redholdend', 'red hold piece');
+				animation.addByPrefix('blueholdend', 'blue hold piece');
+				animation.addByPrefix('yellowholdend', 'yellow hold piece');
+				animation.addByPrefix('darkholdend', 'dark hold piece');
+
+				animation.addByPrefix('purplehold', 'purple hold piece');
+				animation.addByPrefix('greenhold', 'green hold piece');
+				animation.addByPrefix('redhold', 'red hold piece');
+				animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('yellowhold', 'yellow hold piece');
+				animation.addByPrefix('darkhold', 'dark hold piece');
+
+				setGraphicSize(Std.int(width * noteSize));
+				updateHitbox();
+				antialiasing = false;
+
+			case 'text':
+				frames = Paths.getSparrowAtlas('ui/alphabet');
+
+				var noteColors = ['purple', 'blue', 'green', 'red', 'white', 'yellow', 'violet', 'black', 'dark'];
+	
+				var boldLetters:Array<String> = new Array<String>();
+	
+				for (frameName in frames.frames)
 				{
-					animation.addByPrefix(gfxLetter[i] + ' hold', gfxLetter[i] + ' hold');
-					animation.addByPrefix(gfxLetter[i] + ' tail', gfxLetter[i] + ' tail');
+					if (frameName.name.contains('bold'))
+					{
+						boldLetters.push(frameName.name);
+					}
 				}
-			}
+				var randomFrame = boldLetters[new FlxRandom().int(0, boldLetters.length - 1)];
+				var prefix = randomFrame.substr(0, randomFrame.length - 4);
+				for (note in noteColors)
+				{
+					animation.addByPrefix('${note}Scroll', prefix, 24);
+				}
+				setGraphicSize(Std.int(width * 1.2 * (noteSize / 0.7)));
+				updateHitbox();
+				antialiasing = true;
+				// noteOffset = -(width - 78 + (mania == 4 ? 30 : 0));
+
+			case 'guitarHero':
+				frames = Paths.getSparrowAtlas('notes/NOTEGH_assets', 'shared');
+
+				animation.addByPrefix('greenScroll', 'A Note');
+				animation.addByPrefix('greenhold', 'A Hold Piece');
+				animation.addByPrefix('greenholdend', 'A Hold End');
+
+
+				animation.addByPrefix('redScroll', 'B Note');
+				animation.addByPrefix('redhold', 'B Hold Piece');
+				animation.addByPrefix('redholdend', 'B Hold End');
+
+				animation.addByPrefix('yellowScroll', 'C Note');
+				animation.addByPrefix('yellowhold', 'C Hold Piece');
+				animation.addByPrefix('yellowholdend', 'C Hold End');
+
+				animation.addByPrefix('blueScroll', 'D Note');
+				animation.addByPrefix('bluehold', 'D Hold Piece');
+				animation.addByPrefix('blueholdend', 'D Hold End');
+
+				animation.addByPrefix('orangeScroll', 'E Note');
+				animation.addByPrefix('orangehold', 'E Hold Piece');
+				animation.addByPrefix('orangeholdend', 'E Hold End');
+
+				setGraphicSize(Std.int(width * 0.7));
+				updateHitbox();
+				antialiasing = true;
+			case 'phone' | 'phone-alt' | 'phone-smash':
+				frames = Paths.getSparrowAtlas('notes/NOTE_phone', 'shared');
+
+				animation.addByPrefix('greenScroll', 'green0');
+				animation.addByPrefix('redScroll', 'red0');
+				animation.addByPrefix('blueScroll', 'blue0');
+				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('whiteScroll', 'white0');
+				animation.addByPrefix('yellowScroll', 'yellow0');
+				animation.addByPrefix('violetScroll', 'violet0');
+				animation.addByPrefix('blackScroll', 'black0');
+				animation.addByPrefix('darkScroll', 'dark0');
+
+
+				animation.addByPrefix('purpleholdend', 'pruple end hold');
+				animation.addByPrefix('greenholdend', 'green hold end');
+				animation.addByPrefix('redholdend', 'red hold end');
+				animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('whiteholdend', 'white hold end');
+				animation.addByPrefix('yellowholdend', 'yellow hold end');
+				animation.addByPrefix('violetholdend', 'violet hold end');
+				animation.addByPrefix('blackholdend', 'black hold end');
+				animation.addByPrefix('darkholdend', 'dark hold end');
+
+				animation.addByPrefix('purplehold', 'purple hold piece');
+				animation.addByPrefix('greenhold', 'green hold piece');
+				animation.addByPrefix('redhold', 'red hold piece');
+				animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('whitehold', 'white hold piece');
+				animation.addByPrefix('yellowhold', 'yellow hold piece');
+				animation.addByPrefix('violethold', 'violet hold piece');
+				animation.addByPrefix('blackhold', 'black hold piece');
+				animation.addByPrefix('darkhold', 'dark hold piece');
+
+				LocalScrollSpeed = 1.08;
 				
-			ogW = width;
-			ogH = height;
-			if (!isSustainNote)
-				setGraphicSize(Std.int(defaultWidth * scales[mania]));
-			else
-				setGraphicSize(Std.int(defaultWidth * scales[mania]), Std.int(defaultHeight * scales[0]));
-			updateHitbox();
+				setGraphicSize(Std.int(width * noteSize));
+				updateHitbox();
+				antialiasing = true;
+				
+				// noteOffset = 20;
+		       }
 	}
 
 	function loadPixelNoteAnims() {

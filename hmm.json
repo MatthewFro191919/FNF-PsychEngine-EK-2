@@ -41,6 +41,11 @@
       "version": "3.0.2"
     },
     {
+      "name": "discord_rpc",
+      "type": "haxelib",
+      "version": null
+    },
+    {
       "name": "SScript",
       "type": "git",
       "dir": null,

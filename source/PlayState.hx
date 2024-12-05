@@ -377,29 +377,6 @@ class PlayState extends MusicBeatState
 			case 'five-nights':
 				inFiveNights = true;
 		}
-		if (boyfriend.curCharacter == 'supershaggy') {
-			shaggyT = new FlxTrail(boyfriend, null, 3, 6, 0.3, 0.002);
-			bfTrailGroup.add(shaggyT);
-		}	
-		if (boyfriend.curCharacter == 'godshaggy') {
-			legs = new FlxSprite(-850, -850);
-			legs.frames = Paths.getSparrowAtlas('characters/shaggy_god', 'shared');
-			legs.animation.addByPrefix('legs', "solo_legs", 30);
-			legs.animation.play('legs');
-			legs.antialiasing = true;
-			legs.flipX = true;
-			legs.updateHitbox();
-			legs.offset.set(legs.frameWidth / 2, 10);
-			legs.alpha = 0;
-
-			legT = new FlxTrail(legs, null, 5, 7, 0.3, 0.001);
-			bfTrailGroup.add(legT);
-
-			shaggyT = new FlxTrail(boyfriend, null, 5, 7, 0.3, 0.001);
-			bfTrailGroup.add(shaggyT);
-
-			bfGroup.add(legs);
-		}
 
 		//trace('Playback Rate: ' + playbackRate);
 		Paths.clearStoredMemory();
@@ -510,51 +487,51 @@ class PlayState extends MusicBeatState
 			switch (songName)
 			{
 				case 'house' | 'insanity' | 'supernovae' | 'warmup':
-					stageCheck = 'house';
+					curStage = 'house';
 				case 'polygonized':
-					stageCheck = 'red-void';
+					curStage = 'red-void';
 				case 'bonus-song':
-					stageCheck = 'inside-house';
+					curStage = 'inside-house';
 				case 'blocked' | 'corn-theft' | 'maze':
-					stageCheck = 'farm';
+					curStage = 'farm';
 				case 'indignancy':
-					stageCheck = 'farm-night';
+					curStage = 'farm-night';
 				case 'splitathon' | 'mealie':
-					stageCheck = 'farm-night';
+					curStage = 'farm-night';
 				case 'shredder' | 'greetings':
-					stageCheck = 'festival';
+					curStage = 'festival';
 				case 'interdimensional':
-					stageCheck = 'interdimension-void';
+					curStage = 'interdimension-void';
 				case 'rano':
-					stageCheck = 'backyard';
+					curStage = 'backyard';
 				case 'cheating':
-					stageCheck = 'green-void';
+					curStage = 'green-void';
 				case 'unfairness':
-					stageCheck = 'glitchy-void';
+					curStage = 'glitchy-void';
 				case 'exploitation':
-					stageCheck = 'desktop';
+					curStage = 'desktop';
 				case 'kabunga':
-					stageCheck = 'exbungo-land';
+					curStage = 'exbungo-land';
 				case 'glitch' | 'memory':
-					stageCheck = 'house-night';
+					curStage = 'house-night';
 				case 'secret':
-					stageCheck = 'house-sunset';
+					curStage = 'house-sunset';
 				case 'vs-dave-rap' | 'vs-dave-rap-two':
-					stageCheck = 'rapBattle';
+					curStage = 'rapBattle';
 				case 'recursed':
-					stageCheck = 'freeplay';
+					curStage = 'freeplay';
 				case 'roofs':
-					stageCheck = 'roof';
+					curStage = 'roof';
 				case 'bot-trot':
-					stageCheck = 'bedroom';
+					curStage = 'bedroom';
 				case 'escape-from-california':
-					stageCheck = 'desert';
+					curStage = 'desert';
 				case 'master':
-					stageCheck = 'master';
+					curStage = 'master';
 				case 'overdrive':
-					stageCheck = 'overdrive';
+					curStage = 'overdrive';
 				case 'five-nights':
-					stageCheck = 'office';
+					curStage = 'office';
 				case 'spookeez' | 'south' | 'monster':
 					curStage = 'spooky';
 				case 'pico' | 'blammed' | 'philly' | 'philly-nice':
@@ -630,30 +607,25 @@ class PlayState extends MusicBeatState
 				add(gfGroup);
 				add(bfGroup);
 
-				var floor:BGSprite = new BGSprite('frontFloor', -689, 525, Paths.image('backgrounds/office/floor'), null, 1, 1);
-				backgroundSprites.add(floor);
+				var floor:BGSprite = new BGSprite('backgrounds/office/floor', -689, 525);
+				add(floor);
 
-				door = new BGSprite('door', 68, -152, 'backgrounds/office/door', [
-					new Animation('idle', 'doorLOL instance 1', 0, false, [false, false], [11]),
-					new Animation('doorShut', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(22, 11)),
-					new Animation('doorOpen', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(11, 0))
-				], 1, 1, true, true);
-				door.animation.play('idle');
-				backgroundSprites.add(door);
-				add(door);
+				door = new BGSprite('backgrounds/office/door', -200, -100);
+				door.animation.addByPrefix('doorShut', 'doorLOL instance 1', 24, false);
+				door.animation.addByPrefix('doorOpen', 'doorLOL instance 1', 24, false);
+				door.animation.addByPrefix('idle', 'doorLOL instance 1', 24, false);
 
-				var frontWall:BGSprite = new BGSprite('frontWall', -716, -381, Paths.image('backgrounds/office/frontWall'), null, 1, 1);
-				backgroundSprites.add(frontWall);
+				var frontWall:BGSprite = new BGSprite('backgrounds/office/frontWall', -716, -381, 1, 1);
 				add(frontWall);
 
-				doorButton = new BGSprite('doorButton', 521, 61, Paths.image('fiveNights/btn_doorOpen'), null, 1, 1);
-				backgroundSprites.add(doorButton);
+				doorButton = new BGSprite('fiveNights/btn_doorOpen', 521, 61, 1, 1);
 				add(doorButton);
 				
-				var backFloor:BGSprite = new BGSprite('backFloor', -500, -310, Paths.image('backgrounds/office/backFloor'), null, 1, 1);
-				sprites.add(backFloor);
+				var backFloor:BGSprite = new BGSprite('backgrounds/office/backFloor', -500, -310, 1, 1);
+				add(backFloor);
 
 				add(backFloor);
+				add(door);
 				add(frontWall);
 				add(doorButton);
 				add(floor);
